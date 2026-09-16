@@ -1,16 +1,8 @@
 pull_request_rules:
-  - name: VM5 autosquash old-head gate
+  - name: VM5 code scanning semantic preservation
     conditions:
-      - title = VM5_AUTOSQUASH_CHECK_FRESHNESS_20260916
-      - "#commits >= 2"
-      - check-success = @github-actions/guard
-    actions:
-      rebase:
-        autosquash: true
-  - name: VM5 autosquash post-rewrite merge
-    conditions:
-      - title = VM5_AUTOSQUASH_CHECK_FRESHNESS_20260916
-      - "#commits = 1"
+      - title ~= ^VM5_CODE_SCANNING_RULESET_20260916
+      - label = vm5-code-scanning-trigger
     actions:
       merge:
-        method: merge
+        method: squash
