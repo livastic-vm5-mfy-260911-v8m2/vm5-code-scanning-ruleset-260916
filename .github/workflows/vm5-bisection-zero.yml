@@ -1,0 +1,22 @@
+name: VM5 bisection zero-attempt guard
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Source PR green, synthetic queue batch red
+        shell: bash
+        run: |
+          echo "HEAD_REF=${{ github.head_ref }}"
+          if [[ "${{ github.head_ref }}" == mergify/merge-queue/* ]]; then
+            echo "VM5_SYNTHETIC_BATCH_FAIL=1"
+            exit 1
+          fi
+          echo "VM5_SOURCE_GREEN=1"
+
