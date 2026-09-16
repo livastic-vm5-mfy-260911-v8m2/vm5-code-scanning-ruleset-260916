@@ -1,8 +1,7 @@
-pull_request_rules:
-  - name: VM5 code scanning semantic preservation
-    conditions:
-      - title ~= ^VM5_CODE_SCANNING_RULESET_20260916
-      - label = vm5-code-scanning-trigger
-    actions:
-      merge:
-        method: squash
+queue_rules:
+  - name: default
+    queue_conditions: []
+    merge_conditions: []
+    merge_method: merge
+    batch_size: 2
+    batch_max_failure_resolution_attempts: 0
