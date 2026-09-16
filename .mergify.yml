@@ -1,7 +1,8 @@
 queue_rules:
   - name: default
     queue_conditions: []
-    merge_conditions: []
+    merge_conditions:
+      - check-success = @github-actions/guard
     merge_method: merge
     batch_size: 2
     batch_max_failure_resolution_attempts: 0
