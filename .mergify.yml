@@ -1,7 +1,8 @@
 pull_request_rules:
-  - name: VM5 pull-requests-only fast-forward target-ref discriminator
+  - name: VM5 code scanning semantic preservation
     conditions:
-      - title = VM5_PRONLY_FAST_FORWARD_20260916
+      - title ~= ^VM5_CODE_SCANNING_RULESET_20260916
+      - label = vm5-code-scanning-trigger
     actions:
       merge:
-        method: fast-forward
+        method: squash
